@@ -41,6 +41,8 @@ function updateShakeIntensity() {
 
 // Click to accelerate the eruption
 acorn.addEventListener('click', function(e) {
+    e.preventDefault();
+    
     // Add a quick shake animation on click
     if (!acorn.classList.contains('acorn-clicked')) {
         acorn.classList.add('acorn-clicked');
