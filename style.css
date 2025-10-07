@@ -44,6 +44,14 @@ body {
     filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4));
 }
 
+.acorn-image:focus {
+    outline: none;
+}
+
+.acorn-clicked {
+    animation: quickShake 0.3s ease-in-out;
+}
+
 .acorn-shaking {
     animation: progressiveShake var(--shake-duration) ease-in-out infinite;
 }

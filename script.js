@@ -11,6 +11,7 @@ let progressInterval;
 let timeElapsed = 0;
 const maxTime = 10000; // 10 seconds until eruption
 const accelerationPerClick = 2000; // Speed up by 2 seconds per click
+let isErupting = false;
 
 // Start the progressive shaking
 function startShaking() {
@@ -40,6 +41,14 @@ function updateShakeIntensity() {
 
 // Click to accelerate the eruption
 acorn.addEventListener('click', function(e) {
+    // Add a quick shake animation on click
+    if (!acorn.classList.contains('acorn-clicked')) {
+        acorn.classList.add('acorn-clicked');
+        setTimeout(() => {
+            acorn.classList.remove('acorn-clicked');
+        }, 300); // Match animation duration
+    }
+
     // Speed up the eruption
     timeElapsed += accelerationPerClick;
     updateShakeIntensity();
@@ -52,6 +61,9 @@ acorn.addEventListener('click', function(e) {
 
 // Trigger the eruption
 function triggerEruption() {
+    if (isErupting) return;
+    isErupting = true;
+    
     clearInterval(progressInterval);
     acorn.classList.remove('acorn-shaking');
     
@@ -77,6 +89,7 @@ function triggerEruption() {
 
 // Reset the acorn to start over
 function resetAcorn() {
+    isErupting = false;
     timeElapsed = 0;
     shakeIntensity = 0;
     shakeDuration = 1000;
